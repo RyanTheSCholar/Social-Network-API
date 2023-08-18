@@ -26,7 +26,7 @@ const userSchema = new Schema(
     ],
     friends: [
       {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "User",
       },
     ],
@@ -39,9 +39,9 @@ const userSchema = new Schema(
   }
 );
 
-userSchema.virtual('numOfFriends').get(() => {
+userSchema.virtual('numOfFriends').get(function () {
     return this.friends.length;
 })
-const User = model("user", userSchema);
+const User = model("User", userSchema);
 
 module.exports = User;
