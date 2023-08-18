@@ -60,14 +60,6 @@ module.exports = {
       if (!thought) {
         return res.status(404).json({ message: "No thought found" });
       }
-      const user = await User.findOneAndUpdate(
-        { thoughts: req.params.thoughtId },
-        { $pull: { thoughts: req.params.thoughtId } },
-        { new: true }
-      );
-      if (!user) {
-        return res.status(404).json({ message: 'Thought deleted, but no user found' });
-      }
       return res.status(200).json({message: 'This thought is no longer available'})
     } catch (err) {
       res.status(500).json(err);
