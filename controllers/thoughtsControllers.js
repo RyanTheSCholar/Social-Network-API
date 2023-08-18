@@ -38,7 +38,7 @@ module.exports = {
 
       const user = await User.findOneAndUpdate(
         { username: req.body.username },
-        { $addToSet: { applications: newThought._id } },
+        { $push: { thoughts: newThought._id } },
         { new: true }
       );
 
@@ -104,7 +104,7 @@ module.exports = {
       const reaction = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
         { $pull: {reactions: { reactionId: req.params.reactionId } } },
-        { runValidators: true, new: true }
+        { new: true }
       );
       if(!reaction){
         res.status(404).json({message: "User not found"});
